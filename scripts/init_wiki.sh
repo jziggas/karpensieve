@@ -454,7 +454,7 @@ if command -v qmd >/dev/null 2>&1; then
     echo "qmd detected — setting up search collection..."
     qmd --index "$WIKI_BASENAME" collection add "$WIKI_PATH/wiki" --name "$WIKI_BASENAME" 2>/dev/null && \
         echo "  ✓ Collection '$WIKI_BASENAME' registered: $WIKI_PATH/wiki (index: $WIKI_BASENAME)"
-    qmd --index "$WIKI_BASENAME" context add "qmd://$WIKI_BASENAME" "${WIKI_NAME} wiki pages" 2>/dev/null && \
+    qmd --index "$WIKI_BASENAME" context add "qmd://$WIKI_BASENAME/" "${DOMAIN_DESC}" 2>/dev/null && \
         echo "  ✓ Context added for collection '$WIKI_BASENAME'"
     echo "  (Run 'qmd --index $WIKI_BASENAME update && qmd --index $WIKI_BASENAME embed' after ingesting sources)"
     echo ""

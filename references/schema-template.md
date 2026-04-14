@@ -610,9 +610,9 @@ At the start of every session:
    rm -rf "$_tmp"
    ```
    If unprocessed files exist, tell the user: "There are N unprocessed files in raw/. Want to ingest them?"
-5. If qmd is installed but the wiki collection isn't set up yet, set it up:
+5. If qmd is installed, ensure the collection and context are configured (both commands are idempotent):
    ```bash
    qmd --index {{qmd-collection}} collection add wiki/ --name {{qmd-collection}}
-   qmd --index {{qmd-collection}} context add qmd://{{qmd-collection}} "{{description of wiki}}"
+   qmd --index {{qmd-collection}} context add qmd://{{qmd-collection}}/ "{{description of wiki}}"
    ```
 6. Ask the human: ingest, query, lint, or explore?
