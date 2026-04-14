@@ -72,6 +72,8 @@ These fix three false-positive classes that an earlier grep-based scanner produc
 
 **Unresolved contradictions** — lines containing `[!warning]` callouts across all pages.
 
+**Answerable open questions** — for each open question in `open-questions.md` and `action-items.md`, search the wiki (via qmd or direct page reads) for existing content that already answers the question. If the wiki has sufficient evidence to resolve an open item, flag it for resolution. This catches cases where the ingest reconciliation step missed something, or where a later ingest added evidence that resolves a previously-valid question. *(Not automated by the scanner — use qmd manually for this check.)*
+
 **Under-connected pages** — if qmd is available, search for each page's key terms. If semantically related pages exist but don't link to each other, flag the missing connection. *(Not automated by the scanner — use qmd manually for this check.)*
 
 **Index drift** — content files in `wiki/` (non-meta) not referenced by a piped wikilink in `index.md`.
@@ -136,6 +138,11 @@ For pages not updated despite newer sources on the same topic:
 
 For unresolved `[!warning]` callouts:
 - "The contradiction on [[debate|Debate]] (Irving vs Leike on debate effectiveness) has been open since April. Should I **search** for newer sources that might resolve it, **leave** it as unresolved, or **note** it on [[open-questions|Open Questions]]?"
+
+#### Answerable open questions
+
+For open questions the wiki can already answer:
+- "Open question 'Does X need Y?' appears answerable — [[page-a|Page A]] already documents that X uses Z instead. Should I **resolve** it with a citation, or **skip**?"
 
 #### Under-connected pages
 

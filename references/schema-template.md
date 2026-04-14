@@ -383,15 +383,19 @@ Read the top results. For each related page:
 
 If qmd is available as an MCP tool, use the `query` tool directly instead of CLI.
 
-### Step 7 — Check for contradictions
+### Step 7 — Reconcile against existing wiki content
 
-If the new source contradicts an existing claim:
-- Add a callout on the relevant page:
+Read the related pages found in Step 6. For each new claim, recommendation, or open question the source introduces, check it against what those pages already document:
+
+- **Direct contradiction** — the new source says X, an existing page says Y. Add a `[!warning]` callout on the relevant page. Never silently overwrite. Contradictions are signal.
   ```markdown
   > [!warning] Contradiction
   > [[source-a|Source A]] claims X, but [[source-b|Source B]] claims Y.
   ```
-- Do not silently overwrite. Contradictions are signal.
+- **Inapplicable recommendation** — the source gives general advice, but the wiki already has evidence that the advice's precondition doesn't hold in this project. Note the inapplicability on the relevant page rather than raising an open question.
+- **Already answered** — before raising any open question, search the wiki for whether existing pages already provide the answer. If they do, write the resolved answer, not the question.
+
+The test: every new open question should survive "does the wiki already know the answer to this?" If it does, it's not an open question — it's a claim to be written.
 
 ### Step 8 — Update index.md
 
@@ -509,6 +513,7 @@ Periodic health check. Scan the wiki and report:
 | Stale pages | Compare each page's `updated` date against newer sources on the same topic |
 | Missing pages | Find entities/concepts mentioned 2+ times across pages but lacking their own page |
 | Contradictions | Search for unresolved `[!warning]` callouts |
+| Answerable open questions | For each open question, search wiki for existing content that already answers it |
 | Thin pages | Pages under ~100 words of content |
 | Under-connected | Search each page's key terms — if semantically related pages don't link to each other, suggest it |
 | Index drift | Diff files on disk against entries in `index.md` |
