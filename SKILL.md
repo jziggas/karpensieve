@@ -1,5 +1,5 @@
 ---
-name: llm-wiki
+name: karpensieve
 description: >
   Build and maintain a persistent, LLM-maintained wiki from raw source documents using Obsidian-compatible markdown.
   Use this skill whenever the user wants to: create a new knowledge wiki or knowledge base from documents,
@@ -7,11 +7,11 @@ description: >
   set up a "second brain" or personal knowledge management system backed by markdown files,
   or any task involving structured knowledge accumulation from sources over time.
   Also trigger when the user mentions "wiki", "knowledge base", "ingest documents", "process sources",
-  "Obsidian wiki", "research wiki", "llm wiki", or references the pattern of LLMs maintaining a wiki.
+  "Obsidian wiki", "research wiki", "karpensieve", or references the pattern of LLMs maintaining a wiki.
   Do NOT use for one-off document summaries, simple file reading, or generic markdown editing unrelated to wiki maintenance.
 ---
 
-# LLM Wiki Skill
+# karpensieve Skill
 
 An LLM-maintained, Obsidian-compatible wiki that compiles knowledge from raw sources into a persistent, interlinked collection of markdown pages. Flat structure, minimal ceremony, typed by frontmatter not folders.
 
@@ -32,7 +32,7 @@ An LLM-maintained, Obsidian-compatible wiki that compiles knowledge from raw sou
 2. Ask where it should live (default: current working directory)
 3. Run the init script:
    ```bash
-   bash /path/to/llm-wiki/scripts/init_wiki.sh "<wiki_path>" "<wiki_name>" "<domain_description>"
+   bash /path/to/karpensieve/scripts/init_wiki.sh "<wiki_path>" "<wiki_name>" "<domain_description>"
    ```
 4. Read `references/schema-template.md` and customize the generated `SCHEMA.md` for the user's domain.
 5. Walk the user through the result.

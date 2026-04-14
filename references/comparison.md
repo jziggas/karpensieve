@@ -1,6 +1,6 @@
-# How LLM Wiki compares
+# How karpensieve compares
 
-Most AI-powered knowledge tools use RAG (retrieval-augmented generation): you upload documents, the AI retrieves relevant chunks at query time, and generates an answer. This works for quick Q&A but nothing is built up between queries. LLM Wiki takes a different approach — the LLM **compiles** your sources into a persistent, interlinked wiki that accumulates knowledge over time.
+Most AI-powered knowledge tools use RAG (retrieval-augmented generation): you upload documents, the AI retrieves relevant chunks at query time, and generates an answer. This works for quick Q&A but nothing is built up between queries. karpensieve takes a different approach — the LLM **compiles** your sources into a persistent, interlinked wiki that accumulates knowledge over time. Search (via qmd) retrieves from these compiled pages rather than raw document chunks, so you get structured, cross-referenced results instead of isolated fragments.
 
 Here's how it compares to the tools people most often ask about.
 
@@ -8,9 +8,9 @@ Here's how it compares to the tools people most often ask about.
 
 ## At a glance
 
-| | NotebookLM | ChatGPT | Claude Projects | LLM Wiki |
+| | NotebookLM | ChatGPT | Claude Projects | karpensieve |
 |---|---|---|---|---|
-| **Approach** | RAG | RAG | RAG + memory | Compilation |
+| **Approach** | RAG over raw docs | RAG over raw docs | RAG + memory | Compilation + retrieval over compiled pages |
 | **Knowledge persists** | No — re-derived each query | Fragile — memory wipes have occurred | Partially — memory summaries, capped | Yes — markdown files on disk |
 | **Browsable output** | No — query-only | No — locked in chat history | No — chat + memory summary | Yes — Obsidian vault with graph view |
 | **Cross-referencing** | No | No | No | Explicit wikilinks, maintained by LLM |
@@ -105,10 +105,10 @@ Anthropic's Claude offers Projects — workspaces where you add files and instru
 
 **Use Claude Projects when** you have an ongoing project that benefits from maintained context — a codebase, a client engagement, a research thread. You want Claude to remember decisions and context within that project.
 
-**Use LLM Wiki when** you're accumulating knowledge over weeks or months from many sources and want it organized, browsable, interlinked, and compounding. You're willing to invest more effort — curating sources, guiding ingest, asking the right questions — in exchange for a persistent knowledge base that you own, can browse in Obsidian, version with git, and share with collaborators. The wiki gets richer with every source you add. Nothing is re-derived, nothing is locked in a platform, nothing disappears.
+**Use karpensieve when** you're accumulating knowledge over weeks or months from many sources and want it organized, browsable, interlinked, and compounding. You're willing to invest more effort — curating sources, guiding ingest, asking the right questions — in exchange for a persistent knowledge base that you own, can browse in Obsidian, version with git, and share with collaborators. The wiki gets richer with every source you add. Nothing is re-derived, nothing is locked in a platform, nothing disappears.
 
 ---
 
 ## They're complementary
 
-These tools aren't mutually exclusive. You might use NotebookLM for rapid document triage, then ingest the important sources into your LLM Wiki for long-term synthesis. You might use Claude Projects for day-to-day project work and periodically file key findings back into a wiki. The wiki is the long-term store; the other tools are working surfaces.
+These tools aren't mutually exclusive. You might use NotebookLM for rapid document triage, then ingest the important sources into your karpensieve wiki for long-term synthesis. You might use Claude Projects for day-to-day project work and periodically file key findings back into a wiki. The wiki is the long-term store; the other tools are working surfaces.

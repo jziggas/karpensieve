@@ -1,25 +1,29 @@
 #!/usr/bin/env bash
 # init_wiki.sh — Initialize an LLM-maintained wiki with Obsidian-compatible structure
 #
-# Usage: bash init_wiki.sh [--skills] <wiki_path> <wiki_name> [domain_description]
+# Usage: bash init_wiki.sh [--no-skills] <wiki_path> <wiki_name> [domain_description]
 #
 # Arguments:
-#   --skills             — (optional) install Claude Code skills for ingest, query, lint
+#   --no-skills          — (optional) skip installing Claude Code skills for ingest, query, lint
 #   wiki_path            — where to create the wiki (e.g., ~/my-research-wiki)
 #   wiki_name            — display name (e.g., "AI Safety Research")
 #   domain_description   — optional one-liner describing the domain
 
 set -euo pipefail
 
-# --- Parse --skills flag ---
-INSTALL_SKILLS=false
-if [ "${1:-}" = "--skills" ]; then
-    INSTALL_SKILLS=true
+# --- Parse --no-skills flag (skills install by default) ---
+INSTALL_SKILLS=true
+if [ "${1:-}" = "--no-skills" ]; then
+    INSTALL_SKILLS=false
+    shift
+elif [ "${1:-}" = "--skills" ]; then
+    echo "Note: Skills are now installed by default. The --skills flag is no longer needed."
+    echo "      Use --no-skills to create a wiki without skills."
     shift
 fi
 
-WIKI_PATH="${1:?Usage: bash init_wiki.sh [--skills] <wiki_path> <wiki_name> [domain_description]}"
-WIKI_NAME="${2:?Usage: bash init_wiki.sh [--skills] <wiki_path> <wiki_name> [domain_description]}"
+WIKI_PATH="${1:?Usage: bash init_wiki.sh [--no-skills] <wiki_path> <wiki_name> [domain_description]}"
+WIKI_NAME="${2:?Usage: bash init_wiki.sh [--no-skills] <wiki_path> <wiki_name> [domain_description]}"
 DOMAIN_DESC="${3:-A knowledge wiki maintained by an LLM.}"
 TODAY=$(date +%Y-%m-%d)
 WIKI_BASENAME="$(basename "$WIKI_PATH")"
@@ -66,7 +70,7 @@ if [ "$INSTALL_SKILLS" = true ]; then
         echo "Skills installed: $(ls "$WIKI_PATH/.claude/skills/" | tr '\n' ' ')"
     else
         echo "WARNING: Skills directory not found at $SKILL_DIR/skills/"
-        echo "         Run from the llm-wiki package directory, or copy skills manually."
+        echo "         Run from the karpensieve package directory, or copy skills manually."
         INSTALL_SKILLS=false
     fi
 fi
@@ -122,7 +126,7 @@ fi
 TEMPLATE_FILE="$SKILL_DIR/references/schema-template.md"
 if [ ! -f "$TEMPLATE_FILE" ]; then
     echo "ERROR: Schema template not found at $TEMPLATE_FILE"
-    echo "       Run from the llm-wiki package directory."
+    echo "       Run from the karpensieve package directory."
     exit 1
 fi
 
@@ -391,7 +395,7 @@ else
     cat > "$WIKI_PATH/page-templates.md" << 'TMPLEOF'
 # Page Templates
 
-See the full llm-wiki skill package for comprehensive templates.
+See the full karpensieve skill package for comprehensive templates.
 Each wiki page should have YAML frontmatter with at minimum:
 
 ```yaml
@@ -499,7 +503,6 @@ echo "  4. Drop source documents into raw/"
 echo "  5. Tell the LLM to ingest them"
 if [ "$INSTALL_SKILLS" = false ]; then
     echo ""
-    echo "To add skills (optional, makes operations more consistent):"
-    echo "  bash $(realpath "$0") --skills can be re-run, or copy skills manually:"
+    echo "Skills were not installed (--no-skills). To add them later:"
     echo "  cp -r $SKILL_DIR/skills $WIKI_PATH/.claude/skills"
 fi
