@@ -314,6 +314,14 @@ For each source, run steps 1, 4-9 sequentially. Each source gets:
 
 After all sources are processed:
 - Run `qmd --index {{qmd-collection}} update && qmd --index {{qmd-collection}} embed` once
+- Check whether the batch meaningfully expanded the wiki's scope:
+  ```bash
+  qmd --index {{qmd-collection}} context list
+  ```
+  If the current context description no longer reflects the wiki's full coverage (e.g., the batch introduced a new topic area), propose an updated context string to the user. On approval:
+  ```bash
+  qmd --index {{qmd-collection}} context add qmd://{{qmd-collection}}/ "updated description"
+  ```
 - Optionally suggest a lint pass — batch ingests often surface new connections worth checking
 
 ---

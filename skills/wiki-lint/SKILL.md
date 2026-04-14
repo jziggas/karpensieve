@@ -17,6 +17,14 @@ User asks to lint, health-check, clean up, or maintain the wiki.
 
 ## Workflow
 
+### 0. Check qmd context
+
+If qmd is installed, verify collection context is configured:
+```bash
+qmd --index {{qmd-collection}} context list
+```
+If no context is configured, flag it and offer to set it using the wiki's domain description from SCHEMA.md. This is a quick preflight check, not an automated scanner category.
+
 ### 1. Run all checks
 
 From the wiki root, run the canonical scanner:
