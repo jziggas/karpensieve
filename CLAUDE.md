@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-This is a **toolkit for creating LLM-maintained wikis**, not a wiki itself. It contains templates, an init script, and skill definitions that get copied into new wiki instances. The toolkit lives in a shared location (e.g., `~/tools/llm-wiki`) and generates self-contained wikis elsewhere.
+This is **karpensieve** — a toolkit for creating LLM-maintained wikis, not a wiki itself. It contains templates, an init script, and skill definitions that get copied into new wiki instances. The toolkit lives in a shared location (e.g., `~/tools/karpensieve`) and generates self-contained wikis elsewhere.
 
 Read `core-idea.md` for the philosophy: instead of RAG (re-derive knowledge on every query), the LLM compiles sources into a persistent, interlinked wiki. Three layers: raw sources (immutable), wiki (LLM-generated markdown), schema (conventions). Three operations: ingest, query, lint.
 
@@ -33,18 +33,18 @@ Read `core-idea.md` for the philosophy: instead of RAG (re-derive knowledge on e
 ## Testing the init script
 
 ```bash
-# Create a test wiki (no skills)
+# Create a test wiki (default: with skills)
 bash scripts/init_wiki.sh /tmp/test-wiki "Test Wiki" "A test wiki"
 
-# Create a test wiki with skills
-bash scripts/init_wiki.sh --skills /tmp/test-wiki-skills "Test Wiki" "A test wiki"
+# Create a test wiki without skills
+bash scripts/init_wiki.sh --no-skills /tmp/test-wiki-minimal "Test Wiki" "A test wiki"
 
 # Verify structure
 ls -R /tmp/test-wiki
-ls -R /tmp/test-wiki-skills/.claude/skills/
+ls -R /tmp/test-wiki/.claude/skills/
 
 # Clean up
-rm -rf /tmp/test-wiki /tmp/test-wiki-skills
+rm -rf /tmp/test-wiki /tmp/test-wiki-minimal
 ```
 
 ## When editing templates
